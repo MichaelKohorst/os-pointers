@@ -29,7 +29,7 @@ int main(int argc, char **argv)
     student.l_name = new char[128];
     
     // Sequence of user input -> store in fields of `student`
-    student.id = promptInt("Please enter the student's id number:",0,1000000000);//Ask for student ID and can have max 9 digits
+    student.id = promptInt("Please enter the student's id number: ",0,1000000000);//Ask for student ID and can have max 9 digits
 
     std::cout << "Please enter the student's first name: ";//Asks for name and can be 128 character long
     std::cin.getline(student.f_name,128);
@@ -37,7 +37,7 @@ int main(int argc, char **argv)
     std::cout << "Please enter the student's last name: "; //Asks for last name and can be 128 character long
     std::cin.getline(student.l_name,128);
 
-    student.n_assignments = promptInt("Please enter how many assignments were graded: ", 1 , 134217728);//prompts for number assignments
+    student.n_assignments = promptInt("Please enter how many assignments were graded: \n", 1 , 134217728);//prompts for number assignments
     student.grades = new double[student.n_assignments];
     for(int i = 0; i < student.n_assignments; i++)//Run through each assignment and prompts an input.
     {
@@ -46,13 +46,14 @@ int main(int argc, char **argv)
         std::string message = "Please enter grade for assignment " + numb + colon;//Concatennation for this message
         student.grades[i]= promptDouble(message, 0, 1000.0);
     }
+    std::cout << "\n";
 
     // Call `CalculateStudentAverage(???, ???)`
-    std::cout << "Student:" << student.f_name << " " << student.l_name << " [" << student.id << "]";
+    std::cout << "Student: " << student.f_name << " " << student.l_name << " [" << student.id << "]\n";
     average = student.n_assignments;
     calculateStudentAverage(student.grades, &average);
     // Output `average`
-    std::cout << "\nAverage grade: " << average;
+    std::cout << "\n  Average grade: " << average <<"\n";
     return 0;
 }
 
@@ -94,8 +95,9 @@ int promptInt(std::string message, int min, int max)
 
         if(valid == 0)//if not valid
         {
-          std::cout << "Sorry I cannot understand your answer\n";
+          std::cout << "Sorry, I cannot understand your answer";
         }
+        
    } 
 
    return promptedInt;
@@ -152,7 +154,7 @@ double promptDouble(std::string message, double min, double max)
 
         if(valid == 0)//if not valid
         {
-          std::cout << "Sorry I cannot understand your answer\n";
+          std::cout << "Sorry, I cannot understand your answer";
         }
    } 
 
